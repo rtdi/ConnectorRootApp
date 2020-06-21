@@ -14,7 +14,7 @@ controllerName="io.rtdi.bigdata.Home"
 			items="{/apps}"
 			width="100%"
 			height="100%">
-			<core:Fragment fragmentName="io.rtdi.bigdata.ui5libs.fragments.applicationtile" type="XML" />
+			<core:Fragment fragmentName="io.rtdi.bigdata.applicationtile" type="XML" />
 		</HBox>
 	</Panel>
 </mvc:View>

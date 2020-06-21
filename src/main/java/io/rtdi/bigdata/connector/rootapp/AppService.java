@@ -36,7 +36,7 @@ public class AppService extends HttpServlet {
 
 
 		try (ServletOutputStream out = response.getOutputStream();) {
-			out.println("{ apps: [");
+			out.println("{ \"apps\": [");
 			for (File f : apps) {
 				if (f.isDirectory() && !f.getName().equals("ROOT") && !f.getName().equals("openui5")) {
 					String connectorname = f.getName();
