@@ -5,13 +5,14 @@
 	<groupId>io.rtdi.bigdata.connector</groupId>
 	<artifactId>connectorrootapp</artifactId>
 	<version>0.8.1</version>
-	<name>ROOT</name>
+	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>war</packaging>
 	<properties>
 		<releaseversion>0.9.5</releaseversion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
+		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
