@@ -42,7 +42,7 @@ public class AppService extends HttpServlet {
 					String connectorname = f.getName();
 					out.println("		{"); 
 					out.println("			\"name\": \"Connector " + connectorname + "\","); 
-					out.println("			\"description\": \"Login to this connector\","); 
+					out.println("			\"description\": \"Login to this connector (Webserver default is: rtdi/rtdi!io)\","); 
 					out.println("			\"tooltip\": null,"); 
 					out.println("			\"href\": \"./" + connectorname + "\","); 
 					out.println("			\"icon\": \"sap-icon://visits\""); 
@@ -50,18 +50,11 @@ public class AppService extends HttpServlet {
 				}
 			}
 			out.println("		{"); 
-			out.println("			\"name\": \"Connector Help\","); 
-			out.println("			\"description\": \"Link to the FileConnector usage help\","); 
+			out.println("			\"name\": \"Setup Help\","); 
+			out.println("			\"description\": \"Details about the webserver setup, security hardening,...\","); 
 			out.println("			\"tooltip\": null,"); 
-			out.println("			\"href\": \"https://github.com/rtdi/RTDIFileConnector\","); 
+			out.println("			\"href\": \"https://github.com/rtdi/ConnectorRootApp\","); 
 			out.println("			\"icon\": \"sap-icon://sys-help\""); 
-			out.println("		},"); 
-			out.println("		{"); 
-			out.println("			\"name\": \"Technical help\","); 
-			out.println("			\"description\": \"Information about setup and options\","); 
-			out.println("			\"tooltip\": null,"); 
-			out.println("			\"href\": \"https://github.com/rtdi/RTDIFileConnector/TechnicalHelp.md\","); 
-			out.println("			\"icon\": \"sap-icon://sys-help-2\""); 
 			out.println("		}"); 
 			out.println("] }");
 		}
