@@ -26,5 +26,5 @@
     <!--
     <Manager pathname="" />
     -->
-    <Environment name="io.rtdi.bigdata.connectors.configpath" value="/usr/local/tomcat/conf/security/rtdiconfig" type="java.lang.String"/>
+    <Environment name="io.rtdi.bigdata.connectors.configpath" value="/usr/local/tomcat/conf/rtdiconfig" type="java.lang.String"/>
 </Context>
