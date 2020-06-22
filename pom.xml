@@ -8,7 +8,6 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>war</packaging>
 	<properties>
-		<releaseversion>0.9.5</releaseversion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>

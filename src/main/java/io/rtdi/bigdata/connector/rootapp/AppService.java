@@ -41,8 +41,7 @@ public class AppService extends HttpServlet {
 				if (f.isDirectory() && !f.getName().equals("ROOT") && !f.getName().equals("openui5")) {
 					String connectorname = f.getName();
 					out.println("		{"); 
-					out.println("			\"name\": \"Connector " + connectorname + "\","); 
-					out.println("			\"description\": \"Login to this connector (Webserver default is: rtdi/rtdi!io)\","); 
+					out.println("			\"name\": \"App: " + connectorname + "\","); 
 					out.println("			\"tooltip\": null,"); 
 					out.println("			\"href\": \"./" + connectorname + "\","); 
 					out.println("			\"icon\": \"sap-icon://visits\""); 
