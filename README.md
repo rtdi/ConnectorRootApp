@@ -1,20 +1,38 @@
 # ConnectorRootApp
 A simple Tomcat base layer providing links to all configured apps, adds security, SSL and other convenience functions.
 
-
-## Default Usage
-
-By starting any docker image based on this (and unless overwritten) the following assumptions are made
-- SSL is turned on but the keys are empty
-- The tomcat default user auth is used and its only user login is rtdi / rtdi!io
-
+<img src="https://github.com/rtdi/ConnectorRootApp/raw/master/docs/media/rootapp.png" width="50%">
 
 ## Usage
 
-Although the image contains a security hardened default tomcat setup, some things like a proper SSL certificate cannot be provided automatically.
-All these settings are located in /usr/local/tomcat/conf/security and hence it is advised to mount this directory with a host directory containing the actual files.
+To start the image quickly download it via docker pull
+
+    docker pull rtdi/connectorrootapp
+
+and start it using the command
+
+    docker run -d --name rootapp -p 80:8080 -p 443:8443   rtdi/connectorrootapp
+
+and then open the root page using the correct hostname, e.g. [http://localhost/](http://localhost/)
+
+This assumes all defaults, meaning https will not be operational, just http. The login is set to rtdi / rtdi!io and all made settings will be made within the container.
+
+The better way however is to provide parameters for the SSL hostname, the webserver password and a permanent directory for the settings.
+In this example the
+- hostname running the docker image is 'example.domain.com'
+- webserver user is 'rtdi' and the password is 'changeit'
+- host's directory to store all settings is '/home/dir'
+- container is removed from docker when it is shut down due to the --rm flag
+
+    docker run -d --name rootapp -p 80:8080 -p 443:8443 \
+    --rm -e SSLHOSTNAME=example.domain.com -e TOMCATPWD=changeit \
+    -v /home/dir:/usr/local/tomcat/conf/security    rtdi/connectorrootapp
+
+The production way is to prive the directory and modify/create the files correctly. Maybe even provide a better suited server.xml for the tomcat process.
+
+    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm -v /home/dir:/usr/local/tomcat/conf/security     rtdi/connectorrootapp
+
 The directory structure is 
 
-<img src="https://github.com/rtdi/ConnectorRootApp/raw/master/docs/media/tomcat_security_dir.png" width="50%">
+<img src="https://github.com/rtdi/ConnectorRootApp/raw/master/docs/media/tomcat_security_dir.png" width="25%">
 
-For convenience reasons a little shell script /usr/local/tomcat/create_cert.sh can be used as hint on how to use openssl on the host to create the two SSL key files.

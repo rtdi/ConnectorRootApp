@@ -6,7 +6,7 @@ controllerName="io.rtdi.bigdata.Home"
 	<Panel height="100%">
 		<headerToolbar>
 			<OverflowToolbar>
-				<Text text="All installed connectors" />
+				<Text text="All installed applications" />
 			</OverflowToolbar>
 		</headerToolbar>
 		<HBox id="idAppList"
