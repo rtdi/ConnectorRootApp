@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 TOMCATROOT=/usr/local/tomcat/conf
 SECURITYROOT=$TOMCATROOT/security
 if [ -d ${SECURITYROOT}/ssl ]
