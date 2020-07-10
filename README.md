@@ -24,14 +24,18 @@ In this example the
 - host's directory to store all settings is '/home/dir'
 - container is removed from docker when it is shut down due to the --rm flag
 
-    docker run -d --name rootapp -p 80:8080 -p 443:8443 \
-    --rm -e SSLHOSTNAME=example.domain.com -e TOMCATPWD=changeit \
-    -v /home/dir:/usr/local/tomcat/conf/security    rtdi/connectorrootapp
+    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm \
+      -e SSLHOSTNAME=example.domain.com -e TOMCATPWD=changeit \
+      -v /home/dir/rtdiconfig:/usr/local/tomcat/conf/rtdiconfig \
+      -v /home/dir/security:/usr/local/tomcat/conf/security \
+      rtdi/connectorrootapp
 
 The production way is to prive the directory and modify/create the files correctly. Maybe even provide a better suited server.xml for the tomcat process.
 
-    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm -v /home/dir:/usr/local/tomcat/conf/security \
-        rtdi/connectorrootapp
+    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm \
+      -v /home/dir/rtdiconfig:/usr/local/tomcat/conf/rtdiconfig \
+      -v /home/dir/security:/usr/local/tomcat/conf/security \
+      rtdi/connectorrootapp
 
 The directory structure is 
 
