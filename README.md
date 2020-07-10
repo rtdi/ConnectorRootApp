@@ -30,7 +30,8 @@ In this example the
 
 The production way is to prive the directory and modify/create the files correctly. Maybe even provide a better suited server.xml for the tomcat process.
 
-    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm -v /home/dir:/usr/local/tomcat/conf/security     rtdi/connectorrootapp
+    docker run -d --name rootapp -p 80:8080 -p 443:8443 --rm -v /home/dir:/usr/local/tomcat/conf/security \
+        rtdi/connectorrootapp
 
 The directory structure is 
 
