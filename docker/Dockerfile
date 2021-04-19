@@ -9,6 +9,7 @@ ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/tomcat
 ADD https://github.com/SAP/openui5/releases/download/1.87.4/openui5-runtime-1.87.4.zip ./webapps/openui5.war
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/context.xml conf/
 ADD https://github.com/rtdi/ConnectorRootApp/releases/download/v0.9.11-tomcat9/ROOT.war ./webapps/
+
 RUN set -eux; yum update -y; yum install -y openssl; yumdb set reason dep openssl;
 
 
