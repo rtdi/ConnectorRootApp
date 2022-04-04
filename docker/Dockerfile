@@ -6,7 +6,7 @@ ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/server
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/localhost-rsa-cert.pem conf/security/ssl/
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/localhost-rsa-key.pem conf/security/ssl/
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/tomcat-users-orig.xml conf/
-ADD https://github.com/SAP/openui5/releases/download/1.87.4/openui5-runtime-1.87.4.zip ./webapps/openui5.war
+ADD https://github.com/SAP/openui5/releases/download/1.96.7/openui5-runtime-1.96.7.zip ./webapps/openui5.war
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/context.xml conf/
 ADD https://github.com/rtdi/ConnectorRootApp/releases/download/v0.9.10-tomcat10/ROOT.war ./webapps/
 
