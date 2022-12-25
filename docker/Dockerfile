@@ -8,7 +8,7 @@ ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/localh
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/tomcat-users-orig.xml conf/
 ADD https://github.com/SAP/openui5/releases/download/1.108.2/openui5-runtime-1.108.2.zip ./webapps/openui5.war
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/context.xml conf/
-ADD https://github.com/rtdi/ConnectorRootApp/releases/download/v0.9.14-tomcat10/ROOT.war ./webapps/
+ADD https://github.com/rtdi/ConnectorRootApp/releases/download/latest/ROOT.war ./webapps/
 
 RUN set -eux; apt-get update -y; apt-get install -y openssl;
 
