@@ -1,4 +1,4 @@
-FROM tomcat:10-jdk15-openjdk-oracle
+FROM tomcat:10
 
 LABEL maintainer="info@rtdi.io"
 
@@ -6,9 +6,9 @@ ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/server
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/localhost-rsa-cert.pem conf/security/ssl/
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/localhost-rsa-key.pem conf/security/ssl/
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/tomcat-users-orig.xml conf/
-ADD https://github.com/SAP/openui5/releases/download/1.102.6/openui5-runtime-1.102.6.zip ./webapps/openui5.war
+ADD https://github.com/SAP/openui5/releases/download/1.108.2/openui5-runtime-1.108.2.zip ./webapps/openui5.war
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/context.xml conf/
-ADD https://github.com/rtdi/ConnectorRootApp/releases/download/v0.9.13-tomcat10/ROOT.war ./webapps/
+ADD https://github.com/rtdi/ConnectorRootApp/releases/download/v0.9.14-tomcat10/ROOT.war ./webapps/
 
 RUN set -eux; yum update -y; yum install -y openssl; yumdb set reason dep openssl;
 
