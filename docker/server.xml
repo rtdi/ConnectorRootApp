@@ -71,9 +71,8 @@
 				className="org.apache.coyote.http2.Http2Protocol" />
 			<SSLHostConfig>
 				<Certificate
-					certificateKeyFile="conf/security/ssl/localhost-rsa-key.pem"
-					certificateFile="conf/security/ssl/localhost-rsa-cert.pem"
-					certificateKeyPassword="changeit" type="RSA" />
+					certificateKeystoreFile="/usr/local/tomcat/conf/security/ssl/.certs"
+					certificateKeystorePassword="changeit" type="RSA" />
 			</SSLHostConfig>
 		</Connector>
 
@@ -115,11 +114,6 @@
 					directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b"
 					prefix="localhost_access_log" suffix=".txt" />
 
-				<Context docBase="appcontainerapp" path="/AppContainer"
-					reloadable="true"
-					source="org.eclipse.jst.jee.server:appcontainerapp" />
-				<Context docBase="openui5" path="/openui5" reloadable="true"
-					source="org.eclipse.jst.jee.server:openui5" />
 			</Host>
 		</Engine>
 	</Service>
