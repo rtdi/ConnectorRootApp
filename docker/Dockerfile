@@ -10,9 +10,6 @@ ADD https://github.com/SAP/openui5/releases/download/1.108.2/openui5-runtime-1.1
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/context.xml conf/
 ADD https://github.com/rtdi/ConnectorRootApp/releases/download/latest/ROOT.war ./webapps/
 
-RUN set -eux; apt-get update -y; apt-get install -y openssl;
-
-
 ADD https://raw.githubusercontent.com/rtdi/ConnectorRootApp/master/docker/appcontainer.sh bin/
 RUN chmod +x bin/appcontainer.sh
 
