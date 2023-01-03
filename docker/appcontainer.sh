@@ -7,7 +7,7 @@ then
   echo "SSL directory exists"
 else
   echo "SSL directory ${SECURITYROOT}/ssl does not exist, creating it"
-  mkdir ${SECURITYROOT}/ssl
+  mkdir -p ${SECURITYROOT}/ssl
 fi
 if [ -s ${SECURITYROOT}/ssl/.certs ]
 then
