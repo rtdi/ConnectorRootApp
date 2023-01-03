@@ -9,15 +9,29 @@ else
   echo "SSL directory ${SECURITYROOT}/ssl does not exist, creating it"
   mkdir ${SECURITYROOT}/ssl
 fi
-if [ "${SSLHOSTNAME}" != "" ]
+if [ -s ${SECURITYROOT}/ssl/.certs ]
 then
-  if [ -s ${SECURITYROOT}/ssl/localhost-rsa-key.pem && -s ${SECURITYROOT}/ssl/localhost-rsa-cert.pem ]
+  if [ ! -s ${SECURITYROOT}/ssl/ca.pem ]
   then
-    echo "SSL keyfiles exist already and are not overwritten hence"
+    echo "Convert the file ${SECURITYROOT}/ssl/ca.pem to ${SECURITYROOT}/ssl/ca.der"
+    openssl x509 -in ${SECURITYROOT}/ssl/ca.pem -inform pem -out ${SECURITYROOT}/ssl/ca.der -outform der
   else
-    echo "Creating self signed certificates for ${SSLHOSTNAME}"
-    openssl req -x509 -newkey rsa:4096 -keyout ${SECURITYROOT}/ssl/localhost-rsa-key.pem -out ${SECURITYROOT}/ssl/localhost-rsa-cert.pem -days 36500 -passout pass:changeit -subj "/C=/ST=/L=/O=rtdi.io/CN=${SSLHOSTNAME}"
+    echo "A file ${SECURITYROOT}/ssl/ca.pem does not exist, so no certificate to convert to the 'der' format"
   fi
+  if [ -s ${SECURITYROOT}/ssl/ca.der ]
+  then
+    echo "No ${SECURITYROOT}/ssl/ca.der file found, hence creating a default certificate using the environment variable SSLHOSTNAME (or localhost if missing)"
+    if [ "${SSLHOSTNAME}" == "" ]
+    then
+      SSLHOSTNAME="localhost"
+    fi
+    $JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -storepass changeit -keystore ${SECURITYROOT}/ssl/.certs -noprompt -dname "cn=${SSLHOSTNAME}, ou=mygroup, o=rtdi.io, c=mycountry" -validity 36500
+  else
+    echo "The file ${SECURITYROOT}/ssl/ca.der was found and is imported into the certificate store"
+    $JAVA_HOME/bin/keytool -importcert -alias startssl -storepass changeit -keystore ${SECURITYROOT}/ssl/.certs -noprompt -file ${SECURITYROOT}/ssl/ca.der
+  fi
+else
+  echo "The file ${SECURITYROOT}/ssl/.certs exists and hence is left unchanged"
 fi
 if [ "${TOMCATPWD}" != "" ]
 then
