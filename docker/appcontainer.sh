@@ -15,10 +15,10 @@ then
 else
   if [ -f ${SECURITYROOT}/ssl/ca.pem ]
   then
-    echo "A file ${SECURITYROOT}/ssl/ca.pem does not exist, so no certificate to convert to the 'der' format"
-  else
     echo "Convert the file ${SECURITYROOT}/ssl/ca.pem to ${SECURITYROOT}/ssl/ca.der"
     openssl x509 -in ${SECURITYROOT}/ssl/ca.pem -inform pem -out ${SECURITYROOT}/ssl/ca.der -outform der
+  else
+    echo "A file ${SECURITYROOT}/ssl/ca.pem does not exist, so no certificate to convert to the 'der' format"
   fi
   if [ -f ${SECURITYROOT}/ssl/ca.der ]
   then
@@ -26,14 +26,14 @@ else
     $JAVA_HOME/bin/keytool -importcert -alias startssl -storepass changeit -keystore ${SECURITYROOT}/ssl/.certs -noprompt -file ${SECURITYROOT}/ssl/ca.der
   else
     echo "No ${SECURITYROOT}/ssl/ca.der file found, hence creating a default certificate using the environment variable SSLHOSTNAME (or localhost if missing)"
-    if [ "${SSLHOSTNAME}" == "" ]
+    if [ -z "${SSLHOSTNAME}" ]
     then
       SSLHOSTNAME="localhost"
     fi
     $JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -storepass changeit -keystore ${SECURITYROOT}/ssl/.certs -noprompt -dname "cn=${SSLHOSTNAME}, ou=mygroup, o=rtdi.io, c=mycountry" -validity 36500
   fi
 fi
-if [ "${TOMCATPWD}" != "" ]
+if [ -n "${TOMCATPWD}" ]
 then
   echo "Copying the tomcat-users-orig.xml and setting the password in the tomcat-users.xml file"
   sed -e "s/rtdi\!io/${TOMCATPWD}/g" ${TOMCATROOT}/tomcat-users-orig.xml > ${SECURITYROOT}/tomcat-users.xml
